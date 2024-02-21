@@ -17,7 +17,7 @@ function postWebHook(req,res){
 }
 
 function getWebHook(req,res){
-    const VERIFY_TOKEN = 'myToken'; // Replace with your Verify Token
+    const VERIFY_TOKEN = 'myToken';
     const mode = req.query['hub.mode'];
     const token = req.query['hub.verify_token'];
     const challenge = req.query['hub.challenge'];
