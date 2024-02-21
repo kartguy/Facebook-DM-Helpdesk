@@ -4,11 +4,12 @@ const app=express();
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-app.get('/',(req,res)=>{
+app.get('/api',(req,res)=>{
     res.json({
         msg:"Hello from server"
     })
 })
+
 
 app.use('/',webRouter)
 
