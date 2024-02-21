@@ -18,7 +18,7 @@ router.post('/webhook',(req,res)=>{
 });
 
 router.get('/webhook',(req,res)=>{
-    const VERIFY_TOKEN = 'EAAXe6QCXIL4BOZB4ZCMOJ3i6JbVQjKx2LOjgl5qUYAZAnoWpxneJ19rYCeD4WpbDuNQ3ETc9dGTdmnpYGD1bQEyW9i4wsers5mYIYjJg1l1vBvxAKjzkBf4AoDHfpD41hXXQ8bgw0vDzk8jUm2fs9vSE6Nim3ihjQUyi9GrRFkuGUmPk3LgysQ5HZB6TSFZCP';
+    const VERIFY_TOKEN = 'mySecretToken';
     
     const mode = req.query['hub.mode'];
     const token = req.query['hub.verify_token'];
