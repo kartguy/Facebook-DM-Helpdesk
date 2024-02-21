@@ -10,6 +10,6 @@ app.get('/',(req,res)=>{
     })
 })
 
-app.use('/webhook',webRouter)
+app.use('/',webRouter)
 
 app.listen(3000,()=>console.log("Server running"))
