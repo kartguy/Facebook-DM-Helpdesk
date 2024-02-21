@@ -1,16 +1,28 @@
+require("dotenv").config();
 const express=require("express");
 const { webRouter } = require("./routes/web");
 const app=express();
-const bodyParser = require('body-parser');
-app.use(bodyParser.json());
+const cors=require("cors");
+const { default: mongoose } = require("mongoose");
+const { rootRouter } = require("./routes/routes");
 
-app.get('/api',(req,res)=>{
+mongoose.connect(process.env.Mongo_URL)
+    .then(console.log("MongoDB Connected"));
+
+app.use(cors());
+app.use(express.json());
+
+app.use(express.urlencoded({extended:true}))
+
+
+app.get('/',(req,res)=>{
     res.json({
         msg:"Hello from server"
     })
 })
 
+app.use('/api',rootRouter);
 
 app.use('/',webRouter)
 
-app.listen(3000,()=>console.log("Server running"))
+app.listen(process.env.PORT,()=>console.log(`Server running at port ${process.env.PORT}`))
