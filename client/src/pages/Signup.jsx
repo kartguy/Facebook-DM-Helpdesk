@@ -1,7 +1,7 @@
 import { Input } from "../components/Input";
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate ,NavLink } from "react-router-dom";
 import{backendUrl} from "../backendURL"
 
 export function Signup() {
@@ -93,9 +93,9 @@ export function Signup() {
           <div className="text-center text-md font-semibold">
             <h1>
               Already have an account?
-              <a className="underline text-md" href="/login">
+              <NavLink className=" underline text-md" to="/login">
                 Login
-              </a>
+              </NavLink>
             </h1>
           </div>
         </div>
