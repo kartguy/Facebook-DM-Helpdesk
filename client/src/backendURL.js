@@ -1,1 +1,1 @@
-export const backendUrl = "https://vercel-deployment-server-nine.vercel.app";
+export const backendUrl = "http://localhost:3000";
