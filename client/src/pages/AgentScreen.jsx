@@ -11,7 +11,6 @@ import burger from "../assets/burger.jpeg"
 import reload from "../assets/reload.png"
 import phone from "../assets/phone.png"
 import share from "../assets/share.png"
-// import profile from "../../Assets/profile.png";
 import "./AgentScreen/final.css";
 
 export function AgentScreen () {
@@ -32,29 +31,8 @@ export function AgentScreen () {
   let custId = "";
   let lastStoredMessageTimestamp="";
 
-  // checking that user is authenticated or not
-//   const fetchUserData = async () => {
-//     try {
-//       const res = await fetch(`${backendUrl}/userdata`, {
-//         method: "GET",
-//         headers: {
-//           Accept: "application/json",
-//           "Content-Type": "application/json",
-//           Authorization: localStorage.getItem("jwtToken"),
-//         },
-//         credentials: "include",
-//       });
 
-//       const data = await res.json();
-//       console.log(`Logged in as ${data.name}`);
-//     } catch (error) {
-//       console.log(error);
-//       navigate("/login");
-//       window.alert("Internal Server Error");
-//     }
-//   };
 
-  // fetching all the messages log and info from backend
   const fetchMessages = async () => {
     try {
       const res = await fetch(
@@ -69,9 +47,8 @@ export function AgentScreen () {
       );
 
       const data = await res.json();
-    //   console.log(data);
+    
 
-      // getting the info from the data that we just got
       const conversationsData = [];
       data.data.forEach((chat) => {
         const participants = chat.participants.data;
@@ -103,7 +80,7 @@ export function AgentScreen () {
     }
   };
 
-  // sending message to customer
+  
   const sendMessage = async () => {
     try {
       const res = await fetch(
@@ -132,14 +109,14 @@ export function AgentScreen () {
     }
   };
 
-  // logic for send message button
+  
   const handleSendMessage = () => {
     if (newMessage.trim() !== "") {
       sendMessage();
     }
   };
 
-  // opening clicked chat
+  
   const handleViewChat = (email, name) => {
     const [firstName, ...lastNameArray] = name.split(" ");
     const lastName = lastNameArray.join(" ");
@@ -159,7 +136,7 @@ export function AgentScreen () {
     console.log(activeChatMessages);
   };
 
-  // checking for the new messages
+ 
   const checkIfNewMessage = async () => {
     try {
       const res = await fetch(
@@ -186,22 +163,22 @@ export function AgentScreen () {
         setIsNewMessage(false);
       }
     } catch (error) {
-      // console.log(error);
+     
     }
   };
 
-  // storing the new messages in the database
+  
   const storeNewMessage = async () => {
     if (isNewMessage) {
 
       try {
-        // Extracting new messages
+        
         const newMessages = activeChatMessages.messages.filter((message) => {
           const messageTimestamp = Date.parse(message.created_time);
           return messageTimestamp > lastStoredMessageTimestamp;
         });
 
-        // If there are new messages to store
+        
         if (newMessages.length > 0) {
           const res = await fetch(`${backendUrl}/api/storeMessages`, {
             method: "POST",
@@ -224,7 +201,7 @@ export function AgentScreen () {
   };
 
   useEffect(() => {
-    // fetchMessages();
+    
     const intervalId = setInterval(() => fetchMessages(), 3000); // Poll every 3 seconds
     return () => clearInterval(intervalId);
   }, []);
